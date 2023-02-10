@@ -22,9 +22,10 @@ const Home: NextPage = () => {
 
   console.log("Streamed response: ", generatedBios);
 
-  const prompt = getPrompt();
+  const prompt = getPrompt(dailyMeal, vibe);
 
   const generateBio = async (e: any) => {
+    console.log('--- e', e, prompt);
     e.preventDefault();
 
     setGeneratedBios("");
@@ -39,14 +40,17 @@ const Home: NextPage = () => {
         prompt,
       }),
     });
+    console.log('--- response', response);
     console.log("Edge function returned.");
 
     if (!response.ok) {
+      console.error('--- response not ok', response);
       throw new Error(response.statusText);
     }
 
     // This data is a ReadableStream
     const data = response.body;
+    console.log('--- data?', data);
     if (!data) {
       return;
     }
@@ -144,20 +148,22 @@ const Home: NextPage = () => {
                 <>
                   <div>
                     <h2 className="sm:text-4xl text-3xl font-bold text-slate-900 mx-auto">
-                      Your generated bios
+                      Your generated food ideas
                     </h2>
                   </div>
                   <div className="space-y-8 flex flex-col items-center justify-center max-w-xl mx-auto">
                     {generatedBios
-                      .substring(generatedBios.indexOf("1") + 3)
-                      .split("2.")
+                      // .substring(generatedBios.indexOf("1") + 3)
+                      .split("---")
                       .map((generatedBio) => {
+                        if (generatedBio.length === 0) return null;
+
                         return (
                           <div
                             className="bg-white rounded-xl shadow-md p-4 hover:bg-gray-100 transition cursor-copy border"
                             onClick={() => {
                               navigator.clipboard.writeText(generatedBio);
-                              toast("Bio copied to clipboard", {
+                              toast("Food idea copied to clipboard", {
                                 icon: "✂️",
                               });
                             }}
