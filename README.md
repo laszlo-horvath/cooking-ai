@@ -1,8 +1,8 @@
-# [TwitterBio.com](https://www.twitterbio.com/)
+# [🍖Cooking AI 🤖]([https://www.twitterbio.com/](https://cooking-5emersgkf-laszlo-private.vercel.app/))
 
-This project generates Twitter bios for you using AI.
+This project generates cooking / food ideas for you considering your food intolerance using AI.
 
-[![Cooking AI](./public/screenshot.png)](https://www.twitterbio.com)
+[![Cooking AI](./public/screenshot.png)]([https://www.twitterbio.com](https://www.twitterbio.com/](https://cooking-5emersgkf-laszlo-private.vercel.app/))
 
 ## How it works
 
